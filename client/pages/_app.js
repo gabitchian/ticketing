@@ -1,11 +1,11 @@
-import Router from 'next/router';
 import 'bootstrap/dist/css/bootstrap.css';
 import buildClient from '../api/build-client';
+import Header from '../components/header';
 
 const AppComponent = ({Component, pageProps, currentUser}) => {
   return (
     <div>
-      <div>{currentUser.email}</div>
+      <Header currentUser={currentUser} />
       <Component {...pageProps} />
     </div>
   );
@@ -14,7 +14,7 @@ const AppComponent = ({Component, pageProps, currentUser}) => {
 AppComponent.getInitialProps = async (appContext) => {
   const client = buildClient(appContext.ctx);
   const {data} = await client.get('/api/users/currentuser');
-  let pageProps = {};
+  let pageProps = data;
   if (appContext.Component.getInitialProps) {
     pageProps = await appContext.Component.getInitialProps(appContext.ctx);
   }
