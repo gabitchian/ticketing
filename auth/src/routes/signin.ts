@@ -3,8 +3,7 @@ import {body} from 'express-validator';
 import jwt from 'jsonwebtoken';
 import {User} from '../models/user';
 import {Hash} from '../services/hash';
-import {validateRequest} from '../middlewares/validate-request';
-import {BadRequestError} from '../errors/bad-request-error';
+import {validateRequest, BadRequestError} from '@gabiticketing/common';
 
 const router = express.Router();
 
